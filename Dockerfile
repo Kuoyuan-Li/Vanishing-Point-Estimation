@@ -14,6 +14,6 @@ COPY . /app
 
 RUN apt-get update
 
-RUN apt-get install ffmpeg libsm6 libxext6  -y
+RUN apt-get install ffmpeg libsm6 libxext6 python-dev libldap2-dev libsasl2-dev libssl-dev libzbar-dev -y
 
 CMD python3 vanish_point.py
