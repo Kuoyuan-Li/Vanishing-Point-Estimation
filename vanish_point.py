@@ -10,7 +10,8 @@ import numpy as np
 import pandas as pd
 import random
 import math
-import easygui
+from tkinter import Tk     # from tkinter import Tk for Python 3.x
+from tkinter.filedialog import askopenfilename
 
 # Helper functions
 
@@ -198,12 +199,13 @@ def RANSAC(lines,ransac_iterations,ransac_threshold,ransac_ratio):
 ransac_iterations,ransac_threshold,ransac_ratio = 350,13,0.93
 
 if __name__ == "__main__":
-    filename = easygui.fileopenbox()
+    Tk().withdraw()  # we don't want a full GUI, so keep the root window from appearing
+    filename = askopenfilename()  # show an "Open" dialog box and return the path to the selected file
     """For the image, Use Canny+Hough to detect edges, use RANSAC to identify the vanishing points
     """
     # Read images from folder
     image = load_images(filename)
-    ## Task1: Detect lines using Canny + Hough
+    # Task1: Detect lines using Canny + Hough
     blur_image, edge_image, lines = detect_lines(image)
     # Show lines on the original images
     # show_lines(images,lines_all)
